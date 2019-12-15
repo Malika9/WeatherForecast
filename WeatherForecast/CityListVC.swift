@@ -17,34 +17,134 @@ class CityListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
-        prepareDataModel()
+        self.prepareDataModel()
     }
 
     private func prepareDataModel() {
 
+        let dispatchGroup = DispatchGroup()
+
         let session = URLSession.shared
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=delhi,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
+        let operation1 = BlockOperation(block: {
+            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=delhi,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
+            dispatchGroup.enter()
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
+                    if let _ = jsonObject as? [String: Any] {
 
-        let task = session.dataTask(with: url, completionHandler: { data, response, error in
-
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: data!)
-                if let _ = jsonObject as? [String: Any] {
-
-                    var dataModel = WeatherDataModel()
-                    dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                    print(dataModel)
-                    self.wdCityArr.append(dataModel)
-                    self.prepareTableViewDataSource()
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        var dataModel = WeatherDataModel()
+                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                        print(dataModel)
+                        self.wdCityArr.append(dataModel)
+                        dispatchGroup.leave()
                     }
+                } catch {
+                    print("JSONSerialization error:", error)
                 }
-            } catch {
-                print("JSONSerialization error:", error)
-            }
+            })
+            task.resume()
         })
-        task.resume()
+
+        let operation2 = BlockOperation(block: {
+            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=pune,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
+            dispatchGroup.enter()
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
+                    if let _ = jsonObject as? [String: Any] {
+
+                        var dataModel = WeatherDataModel()
+                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                        print(dataModel)
+                        self.wdCityArr.append(dataModel)
+                        dispatchGroup.leave()
+                    }
+                } catch {
+                    print("JSONSerialization error:", error)
+                }
+            })
+            task.resume()
+        })
+
+        let operation3 = BlockOperation(block: {
+            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=batala,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
+            dispatchGroup.enter()
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
+                    if let _ = jsonObject as? [String: Any] {
+
+                        var dataModel = WeatherDataModel()
+                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                        print(dataModel)
+                        self.wdCityArr.append(dataModel)
+                        dispatchGroup.leave()
+                    }
+                } catch {
+                    print("JSONSerialization error:", error)
+                }
+            })
+            task.resume()
+        })
+
+        let operation4 = BlockOperation(block: {
+            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=ambala,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
+            dispatchGroup.enter()
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+
+                do {
+
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
+                    if let _ = jsonObject as? [String: Any] {
+
+                        var dataModel = WeatherDataModel()
+                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                        print(dataModel)
+                        self.wdCityArr.append(dataModel)
+                        dispatchGroup.leave()
+                    }
+                } catch {
+                    print("JSONSerialization error:", error)
+                }
+            })
+            task.resume()
+        })
+
+        let operation5 = BlockOperation(block: {
+            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=amritsar,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
+            dispatchGroup.enter()
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
+                    if let _ = jsonObject as? [String: Any] {
+
+                        var dataModel = WeatherDataModel()
+                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                        print(dataModel)
+                        self.wdCityArr.append(dataModel)
+                        dispatchGroup.leave()
+                    }
+                } catch {
+                    print("JSONSerialization error:", error)
+                }
+            })
+            task.resume()
+        })
+
+        let operationQueue = OperationQueue()
+        operationQueue.addOperation(operation1)
+        operationQueue.addOperation(operation2)
+        operationQueue.addOperation(operation3)
+        operationQueue.addOperation(operation4)
+        operationQueue.addOperation(operation5)
+
+        dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+            print("all done......")
+            print(self.wdCityArr)
+            self.prepareTableViewDataSource()
+            self.tableView.reloadData()
+        })
     }
 
     private func prepareTableViewDataSource() {
