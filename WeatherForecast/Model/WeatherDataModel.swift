@@ -14,25 +14,6 @@ struct WeatherDataModel : Codable {
 	var cnt : Int?
 	var list : [List]?
 	var city : City?
-
-//    enum CodingKeys: String, CodingKey {
-//
-//        case cod = "cod"
-//        case message = "message"
-//        case cnt = "cnt"
-//        case list = "list"
-//        case city = "city"
-//    }
-
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        cod = try values.decodeIfPresent(String.self, forKey: .cod)
-//        message = try values.decodeIfPresent(Int.self, forKey: .message)
-//        cnt = try values.decodeIfPresent(Int.self, forKey: .cnt)
-//        list = try values.decodeIfPresent([List].self, forKey: .list)
-//        city = try values.decodeIfPresent(City.self, forKey: .city)
-//    }
-
 }
 
 struct WeatherDisplayModel {
@@ -43,25 +24,4 @@ struct WeatherDisplayModel {
     var humidity: Int?
     var speed: Double?
     var weather: String?
-
-//    enum CodingKeys: String, CodingKey {
-//
-//        case temp = "temp"
-//        case min_temp = "min_temp"
-//        case max_temp = "max_temp"
-//        case humidity = "humidity"
-//        case speed = "speed"
-//        case weather = "weather"
-//    }
-
-//    required init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        temp = try values.decodeIfPresent(Double.self, forKey: .temp)
-//        min_temp = try values.decodeIfPresent(Double.self, forKey: .min_temp)
-//        max_temp = try values.decodeIfPresent(Double.self, forKey: .max_temp)
-//        humidity = try values.decodeIfPresent(Int.self, forKey: .humidity)
-//        speed = try values.decodeIfPresent(Double.self, forKey: .speed)
-//        weather = try values.decodeIfPresent(String.self, forKey: .weather)
-//    }
-
 }
