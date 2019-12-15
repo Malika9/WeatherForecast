@@ -17,7 +17,6 @@ class CityListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
-//        city label
         self.prepareDataModel()
     }
 
@@ -189,7 +188,7 @@ class CityListVC: UIViewController {
                 }
                 if max_temp < slotMaxTemp {
                     max_temp = slotMaxTemp
-                }
+                }//1576422000   //1576432800
 
                 let date = Date(timeIntervalSince1970: TimeInterval(slotStartTime))
                 let dateFormatter = DateFormatter()
