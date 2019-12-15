@@ -37,6 +37,8 @@ class CityListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if cities.count != Utils.cities.count {
             self.prepareDataModel()
+        } else {
+            self.tableView.reloadData()
         }
     }
 
