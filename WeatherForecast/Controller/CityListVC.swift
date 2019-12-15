@@ -17,6 +17,7 @@ class CityListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.prepareDataModel()
     }
 
@@ -233,7 +234,7 @@ extension CityListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CardCell") as? CardCell {
             cell.selectionStyle = .none
-            cell.lblCityName.text = self.weatherDisplayModel[indexPath.row].heading
+            cell.lblCityName.text = self.weatherDisplayModel[indexPath.row].heading?.uppercased()
             cell.lblTemp.text = "\(self.weatherDisplayModel[indexPath.row].temp ?? 0)"
             cell.lblMinTemp.text = "\(self.weatherDisplayModel[indexPath.row].min_temp ?? 0)"
             cell.lblMaxTemp.text = "\(self.weatherDisplayModel[indexPath.row].max_temp ?? 0)"

@@ -22,12 +22,11 @@ class CardCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.containerView.dropShadow()
+        self.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9450980392, blue: 0.9725490196, alpha: 1)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

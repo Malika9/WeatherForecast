@@ -49,7 +49,7 @@ class CityDetailsVC: UIViewController {
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.didSwipeLeft(sender:)))
         leftSwipeGesture.direction = .left
         self.view.addGestureRecognizer(leftSwipeGesture)
-        self.lblCityName.text = self.cityWeatherData.city?.name
+        self.lblCityName.text = self.cityWeatherData.city?.name?.uppercased()
         prepareTableViewDataSource()
         self.btnPrev.isHidden = true
         self.tableView.reloadData()

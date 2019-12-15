@@ -26,6 +26,7 @@
 		20FC38C923A501D9004CFF76 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20FC38C723A501D9004CFF76 /* CardCell.xib */; };
 		20FC38CC23A52542004CFF76 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38CB23A52542004CFF76 /* Utils.swift */; };
 		20FC38CF23A65E0B004CFF76 /* CityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */; };
+		20FC38D123A6975F004CFF76 /* zs.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FC38D023A6975E004CFF76 /* zs.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		20FC38C723A501D9004CFF76 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		20FC38CB23A52542004CFF76 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsVC.swift; sourceTree = "<group>"; };
+		20FC38D023A6975E004CFF76 /* zs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zs.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		20FC389B23A4EE3D004CFF76 /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				20FC38D023A6975E004CFF76 /* zs.png */,
 				20FC38CD23A65D43004CFF76 /* Controller */,
 				20FC38CA23A52533004CFF76 /* Utility */,
 				20FC38C323A50010004CFF76 /* View */,
@@ -198,6 +201,7 @@
 			files = (
 				20FC38AF23A4EEB4004CFF76 /* Weather.json in Resources */,
 				20FC38A723A4EE40004CFF76 /* LaunchScreen.storyboard in Resources */,
+				20FC38D123A6975F004CFF76 /* zs.png in Resources */,
 				20FC38C923A501D9004CFF76 /* CardCell.xib in Resources */,
 				20FC38A423A4EE40004CFF76 /* Assets.xcassets in Resources */,
 				20FC38A223A4EE3D004CFF76 /* Main.storyboard in Resources */,
