@@ -30,14 +30,19 @@ class CityListVC: UIViewController {
             dispatchGroup.enter()
             let task = session.dataTask(with: url, completionHandler: { data, response, error in
                 do {
+                    if error != nil {return}
                     let jsonObject = try JSONSerialization.jsonObject(with: data!)
                     if let _ = jsonObject as? [String: Any] {
-
                         var dataModel = WeatherDataModel()
-                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                        print(dataModel)
-                        self.wdCityArr.append(dataModel)
-                        dispatchGroup.leave()
+                        do {
+                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                            print(dataModel)
+                            self.wdCityArr.append(dataModel)
+                            dispatchGroup.leave()
+                        } catch {
+                            print("city details not found")
+                            dispatchGroup.leave()
+                        }
                     }
                 } catch {
                     print("JSONSerialization error:", error)
@@ -51,14 +56,20 @@ class CityListVC: UIViewController {
             dispatchGroup.enter()
             let task = session.dataTask(with: url, completionHandler: { data, response, error in
                 do {
+                    if error != nil {return}
                     let jsonObject = try JSONSerialization.jsonObject(with: data!)
                     if let _ = jsonObject as? [String: Any] {
 
                         var dataModel = WeatherDataModel()
-                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                        print(dataModel)
-                        self.wdCityArr.append(dataModel)
-                        dispatchGroup.leave()
+                        do {
+                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                            print(dataModel)
+                            self.wdCityArr.append(dataModel)
+                            dispatchGroup.leave()
+                        } catch {
+                            print("city details not found")
+                            dispatchGroup.leave()
+                        }
                     }
                 } catch {
                     print("JSONSerialization error:", error)
@@ -72,14 +83,20 @@ class CityListVC: UIViewController {
             dispatchGroup.enter()
             let task = session.dataTask(with: url, completionHandler: { data, response, error in
                 do {
+                    if error != nil {return}
                     let jsonObject = try JSONSerialization.jsonObject(with: data!)
                     if let _ = jsonObject as? [String: Any] {
 
                         var dataModel = WeatherDataModel()
-                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                        print(dataModel)
-                        self.wdCityArr.append(dataModel)
-                        dispatchGroup.leave()
+                        do {
+                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                            print(dataModel)
+                            self.wdCityArr.append(dataModel)
+                            dispatchGroup.leave()
+                        } catch {
+                            print("city details not found")
+                            dispatchGroup.leave()
+                        }
                     }
                 } catch {
                     print("JSONSerialization error:", error)
@@ -92,17 +109,20 @@ class CityListVC: UIViewController {
             let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=ambala,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
             dispatchGroup.enter()
             let task = session.dataTask(with: url, completionHandler: { data, response, error in
-
                 do {
-
+                    if error != nil {return}
                     let jsonObject = try JSONSerialization.jsonObject(with: data!)
                     if let _ = jsonObject as? [String: Any] {
-
                         var dataModel = WeatherDataModel()
-                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                        print(dataModel)
-                        self.wdCityArr.append(dataModel)
-                        dispatchGroup.leave()
+                        do {
+                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                            print(dataModel)
+                            self.wdCityArr.append(dataModel)
+                            dispatchGroup.leave()
+                        } catch {
+                            print("city details not found")
+                            dispatchGroup.leave()
+                        }
                     }
                 } catch {
                     print("JSONSerialization error:", error)
@@ -116,14 +136,19 @@ class CityListVC: UIViewController {
             dispatchGroup.enter()
             let task = session.dataTask(with: url, completionHandler: { data, response, error in
                 do {
+                    if error != nil {return}
                     let jsonObject = try JSONSerialization.jsonObject(with: data!)
                     if let _ = jsonObject as? [String: Any] {
-
                         var dataModel = WeatherDataModel()
-                        dataModel = try! JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                        print(dataModel)
-                        self.wdCityArr.append(dataModel)
-                        dispatchGroup.leave()
+                        do {
+                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                            print(dataModel)
+                            self.wdCityArr.append(dataModel)
+                            dispatchGroup.leave()
+                        } catch {
+                            print("city details not found")
+                            dispatchGroup.leave()
+                        }
                     }
                 } catch {
                     print("JSONSerialization error:", error)
