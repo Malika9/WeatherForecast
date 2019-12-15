@@ -36,6 +36,7 @@ struct WeatherDataModel : Codable {
 }
 
 struct WeatherDisplayModel {
+    var heading: String?
     var temp: Double?
     var min_temp: Double?
     var max_temp: Double?

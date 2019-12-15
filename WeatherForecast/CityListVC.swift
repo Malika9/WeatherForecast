@@ -86,6 +86,7 @@ class CityListVC: UIViewController {
                     break //1576476000, 1576399642,  1576400400
                 }
             }
+            displayModel.heading = dataModel.city?.name
             displayModel.min_temp = min_temp
             displayModel.max_temp = max_temp
             if !isSlotFound {
@@ -102,12 +103,19 @@ class CityListVC: UIViewController {
 
 extension CityListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 //self.wdCityArr.count
+        return self.wdCityArr.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CardCell") as? CardCell {
             cell.selectionStyle = .none
+            cell.lblCityName.text = self.weatherDisplayModel[indexPath.row].heading
+            cell.lblTemp.text = "\(self.weatherDisplayModel[indexPath.row].temp ?? 0)"
+            cell.lblMinTemp.text = "\(self.weatherDisplayModel[indexPath.row].min_temp ?? 0)"
+            cell.lblMaxTemp.text = "\(self.weatherDisplayModel[indexPath.row].max_temp ?? 0)"
+            cell.lblHumidity.text = "\(self.weatherDisplayModel[indexPath.row].humidity ?? 0)"
+            cell.lblWeatherType.text = self.weatherDisplayModel[indexPath.row].weather
+            cell.lblWindSpeed.text = "\(self.weatherDisplayModel[indexPath.row].speed ?? 0)"
             return cell
         }
         return UITableViewCell()
