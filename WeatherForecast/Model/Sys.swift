@@ -9,16 +9,16 @@
 import Foundation
 
 struct Sys : Codable {
-	let pod : String?
+	var pod : String?
 
-	enum CodingKeys: String, CodingKey {
+//    enum CodingKeys: String, CodingKey {
+//
+//        case pod = "pod"
+//    }
 
-		case pod = "pod"
-	}
-
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		pod = try values.decodeIfPresent(String.self, forKey: .pod)
-	}
+//    init(from decoder: Decoder) throws {
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        pod = try values.decodeIfPresent(String.self, forKey: .pod)
+//    }
 
 }
