@@ -25,6 +25,7 @@
 		20FC38C823A501D9004CFF76 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38C623A501D9004CFF76 /* CardCell.swift */; };
 		20FC38C923A501D9004CFF76 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20FC38C723A501D9004CFF76 /* CardCell.xib */; };
 		20FC38CC23A52542004CFF76 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38CB23A52542004CFF76 /* Utils.swift */; };
+		20FC38CF23A65E0B004CFF76 /* CityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		20FC38C623A501D9004CFF76 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		20FC38C723A501D9004CFF76 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		20FC38CB23A52542004CFF76 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +82,11 @@
 		20FC389B23A4EE3D004CFF76 /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				20FC38CD23A65D43004CFF76 /* Controller */,
 				20FC38CA23A52533004CFF76 /* Utility */,
 				20FC38C323A50010004CFF76 /* View */,
 				20FC38B023A4FBC5004CFF76 /* Model */,
 				20FC389C23A4EE3D004CFF76 /* AppDelegate.swift */,
-				20FC389E23A4EE3D004CFF76 /* CityListVC.swift */,
 				20FC38A023A4EE3D004CFF76 /* Main.storyboard */,
 				20FC38A323A4EE40004CFF76 /* Assets.xcassets */,
 				20FC38A523A4EE40004CFF76 /* LaunchScreen.storyboard */,
@@ -125,6 +127,15 @@
 				20FC38CB23A52542004CFF76 /* Utils.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		20FC38CD23A65D43004CFF76 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				20FC389E23A4EE3D004CFF76 /* CityListVC.swift */,
+				20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 				20FC38C223A4FBD4004CFF76 /* Coord.swift in Sources */,
 				20FC38C123A4FBD4004CFF76 /* City.swift in Sources */,
 				20FC38BC23A4FBD4004CFF76 /* Clouds.swift in Sources */,
+				20FC38CF23A65E0B004CFF76 /* CityDetailsVC.swift in Sources */,
 				20FC38BE23A4FBD4004CFF76 /* WeatherDataModel.swift in Sources */,
 				20FC38BD23A4FBD4004CFF76 /* Wind.swift in Sources */,
 				20FC38C823A501D9004CFF76 /* CardCell.swift in Sources */,

@@ -17,6 +17,7 @@ class CityListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
+//        city label
         self.prepareDataModel()
     }
 
@@ -86,7 +87,6 @@ class CityListVC: UIViewController {
                     if error != nil {return}
                     let jsonObject = try JSONSerialization.jsonObject(with: data!)
                     if let _ = jsonObject as? [String: Any] {
-
                         var dataModel = WeatherDataModel()
                         do {
                             dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
@@ -247,6 +247,9 @@ extension CityListVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CityDetailsVC") as? CityDetailsVC {
+            vc.cityWeatherData = self.wdCityArr[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
