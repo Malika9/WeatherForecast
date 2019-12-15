@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+class Utils {
+    static var cities = ["amritsar", "delhi", "pune", "ambala", "goa", "noida", "agra"]
+}
+
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get {

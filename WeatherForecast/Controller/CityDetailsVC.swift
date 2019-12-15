@@ -40,7 +40,7 @@ class CityDetailsVC: UIViewController {
     }
 
     @objc private func didSwipeLeft(sender: UISwipeGestureRecognizer) {
-        self.view.backgroundColor = .cyan
+//        self.view.backgroundColor = .cyan
     }
 
     override func viewDidLoad() {

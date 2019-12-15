@@ -27,6 +27,7 @@
 		20FC38CC23A52542004CFF76 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38CB23A52542004CFF76 /* Utils.swift */; };
 		20FC38CF23A65E0B004CFF76 /* CityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */; };
 		20FC38D123A6975F004CFF76 /* zs.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FC38D023A6975E004CFF76 /* zs.png */; };
+		20FC38D323A69A4C004CFF76 /* AddCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC38D223A69A4C004CFF76 /* AddCityVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		20FC38CB23A52542004CFF76 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsVC.swift; sourceTree = "<group>"; };
 		20FC38D023A6975E004CFF76 /* zs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zs.png; sourceTree = "<group>"; };
+		20FC38D223A69A4C004CFF76 /* AddCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				20FC389E23A4EE3D004CFF76 /* CityListVC.swift */,
 				20FC38CE23A65E0B004CFF76 /* CityDetailsVC.swift */,
+				20FC38D223A69A4C004CFF76 /* AddCityVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20FC38D323A69A4C004CFF76 /* AddCityVC.swift in Sources */,
 				20FC38C023A4FBD4004CFF76 /* Main.swift in Sources */,
 				20FC38BF23A4FBD4004CFF76 /* Weather.swift in Sources */,
 				20FC389F23A4EE3D004CFF76 /* CityListVC.swift in Sources */,

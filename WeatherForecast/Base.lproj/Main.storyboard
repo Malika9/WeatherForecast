@@ -39,6 +39,9 @@
                                     <constraint firstAttribute="height" constant="45" id="GpX-34-ddr"/>
                                 </constraints>
                                 <state key="normal" title="LO"/>
+                                <connections>
+                                    <action selector="btnAddLocationTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eYK-XO-oLB"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbw-Qz-Pxy" userLabel="Line">
                                 <rect key="frame" x="0.0" y="131" width="414" height="2"/>
@@ -177,6 +180,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZj-ak-hSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1750.7246376811595" y="119.86607142857142"/>
+        </scene>
+        <!--Add CityVC-->
+        <scene sceneID="wPI-xk-IN6">
+            <objects>
+                <viewController storyboardIdentifier="AddCityVC" id="lXh-DC-nb9" customClass="AddCityVC" customModule="WeatherForecast" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dYK-fh-i5s">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vkh-5a-gVD">
+                                <rect key="frame" x="0.0" y="100" width="414" height="572"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.94509803920000002" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lXh-DC-nb9" id="I5f-gx-sPS"/>
+                                    <outlet property="delegate" destination="lXh-DC-nb9" id="hf0-8B-ch7"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKk-mJ-Yi9">
+                                <rect key="frame" x="30" y="782" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="tYP-pP-Ywq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Add Current Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnAddCurrentLocationTapped:" destination="lXh-DC-nb9" eventType="touchUpInside" id="F6t-Sc-RMW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWO-f8-SiT">
+                                <rect key="frame" x="20" y="59" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.94509803920000002" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nKk-mJ-Yi9" firstAttribute="leading" secondItem="7Kf-fE-9ZU" secondAttribute="leading" constant="30" id="3y1-AZ-Ayc"/>
+                            <constraint firstItem="7Kf-fE-9ZU" firstAttribute="trailing" secondItem="nKk-mJ-Yi9" secondAttribute="trailing" constant="30" id="IF5-6F-YUP"/>
+                            <constraint firstItem="DWO-f8-SiT" firstAttribute="leading" secondItem="7Kf-fE-9ZU" secondAttribute="leading" constant="20" id="Jpc-Uc-Pkr"/>
+                            <constraint firstItem="Vkh-5a-gVD" firstAttribute="top" secondItem="DWO-f8-SiT" secondAttribute="bottom" constant="20" id="QtG-3k-RbG"/>
+                            <constraint firstItem="7Kf-fE-9ZU" firstAttribute="trailing" secondItem="DWO-f8-SiT" secondAttribute="trailing" constant="20" id="UHN-K6-ZLj"/>
+                            <constraint firstItem="Vkh-5a-gVD" firstAttribute="leading" secondItem="7Kf-fE-9ZU" secondAttribute="leading" id="VQY-1s-TJ0"/>
+                            <constraint firstItem="DWO-f8-SiT" firstAttribute="top" secondItem="7Kf-fE-9ZU" secondAttribute="top" constant="15" id="a0k-YJ-pML"/>
+                            <constraint firstItem="7Kf-fE-9ZU" firstAttribute="bottom" secondItem="nKk-mJ-Yi9" secondAttribute="bottom" constant="30" id="hwp-zZ-nYm"/>
+                            <constraint firstItem="nKk-mJ-Yi9" firstAttribute="top" secondItem="Vkh-5a-gVD" secondAttribute="bottom" constant="110" id="yD4-p0-lSa"/>
+                            <constraint firstItem="7Kf-fE-9ZU" firstAttribute="trailing" secondItem="Vkh-5a-gVD" secondAttribute="trailing" id="zif-ks-uU3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Kf-fE-9ZU"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Vkh-5a-gVD" id="JcZ-MV-do9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Yt-J7-UyE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2421.739130434783" y="121.875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RbX-Mj-737">

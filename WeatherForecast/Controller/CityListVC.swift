@@ -9,176 +9,92 @@
 import UIKit
 
 class CityListVC: UIViewController {
-    var wdCityArr = [WeatherDataModel]() //Prepared from json received
-    var weatherDisplayModel = [WeatherDisplayModel]() //Same count as of wdCityArr
+    private var wdCityArr = [WeatherDataModel]() //Prepared from json received
+    private var weatherDisplayModel = [WeatherDisplayModel]() //Same count as of wdCityArr
+    private var cities = Utils.cities
+    private var operations = [BlockOperation]()
+    private let activityIndicator = UIActivityIndicatorView()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func btnAddLocationTapped(_ sender: UIButton) {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddCityVC") as? AddCityVC {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        activityIndicator.frame = self.view.frame
+        activityIndicator.style = .gray
+        self.view.addSubview(activityIndicator)
+        self.view.bringSubviewToFront(activityIndicator)
+        activityIndicator.startAnimating()
         self.prepareDataModel()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if cities.count != Utils.cities.count {
+            self.prepareDataModel()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+    }
+
     private func prepareDataModel() {
-
+        self.cities = Utils.cities
         let dispatchGroup = DispatchGroup()
-
         let session = URLSession.shared
-        let operation1 = BlockOperation(block: {
-            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=delhi,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
-            dispatchGroup.enter()
-            let task = session.dataTask(with: url, completionHandler: { data, response, error in
-                do {
-                    if error != nil {return}
-                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
-                    if let _ = jsonObject as? [String: Any] {
-                        var dataModel = WeatherDataModel()
-                        do {
-                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                            print(dataModel)
-                            self.wdCityArr.append(dataModel)
-                            dispatchGroup.leave()
-                        } catch {
-                            print("city details not found")
-                            dispatchGroup.leave()
-                        }
-                    }
-                } catch {
-                    print("JSONSerialization error:", error)
-                }
-            })
-            task.resume()
-        })
-
-        let operation2 = BlockOperation(block: {
-            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=pune,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
-            dispatchGroup.enter()
-            let task = session.dataTask(with: url, completionHandler: { data, response, error in
-                do {
-                    if error != nil {return}
-                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
-                    if let _ = jsonObject as? [String: Any] {
-
-                        var dataModel = WeatherDataModel()
-                        do {
-                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                            print(dataModel)
-                            self.wdCityArr.append(dataModel)
-                            dispatchGroup.leave()
-                        } catch {
-                            print("city details not found")
-                            dispatchGroup.leave()
-                        }
-                    }
-                } catch {
-                    print("JSONSerialization error:", error)
-                }
-            })
-            task.resume()
-        })
-
-        let operation3 = BlockOperation(block: {
-            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=batala,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
-            dispatchGroup.enter()
-            let task = session.dataTask(with: url, completionHandler: { data, response, error in
-                do {
-                    if error != nil {return}
-                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
-                    if let _ = jsonObject as? [String: Any] {
-                        var dataModel = WeatherDataModel()
-                        do {
-                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                            print(dataModel)
-                            self.wdCityArr.append(dataModel)
-                            dispatchGroup.leave()
-                        } catch {
-                            print("city details not found")
-                            dispatchGroup.leave()
-                        }
-                    }
-                } catch {
-                    print("JSONSerialization error:", error)
-                }
-            })
-            task.resume()
-        })
-
-        let operation4 = BlockOperation(block: {
-            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=ambala,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
-            dispatchGroup.enter()
-            let task = session.dataTask(with: url, completionHandler: { data, response, error in
-                do {
-                    if error != nil {return}
-                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
-                    if let _ = jsonObject as? [String: Any] {
-                        var dataModel = WeatherDataModel()
-                        do {
-                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                            print(dataModel)
-                            self.wdCityArr.append(dataModel)
-                            dispatchGroup.leave()
-                        } catch {
-                            print("city details not found")
-                            dispatchGroup.leave()
-                        }
-                    }
-                } catch {
-                    print("JSONSerialization error:", error)
-                }
-            })
-            task.resume()
-        })
-
-        let operation5 = BlockOperation(block: {
-            let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=amritsar,ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")!
-            dispatchGroup.enter()
-            let task = session.dataTask(with: url, completionHandler: { data, response, error in
-                do {
-                    if error != nil {return}
-                    let jsonObject = try JSONSerialization.jsonObject(with: data!)
-                    if let _ = jsonObject as? [String: Any] {
-                        var dataModel = WeatherDataModel()
-                        do {
-                            dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                            print(dataModel)
-                            self.wdCityArr.append(dataModel)
-                            dispatchGroup.leave()
-                        } catch {
-                            print("city details not found")
-                            dispatchGroup.leave()
-                        }
-                    }
-                } catch {
-                    print("JSONSerialization error:", error)
-                }
-            })
-            task.resume()
-        })
-
         let operationQueue = OperationQueue()
-        operationQueue.addOperation(operation1)
-        operationQueue.addOperation(operation2)
-        operationQueue.addOperation(operation3)
-        operationQueue.addOperation(operation4)
-        operationQueue.addOperation(operation5)
+        self.wdCityArr.removeAll()
+        for city in self.cities {
+            let operation = BlockOperation(block: {
+                let cityUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=\(city),ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")
+                guard let url = cityUrl else {return}
+                dispatchGroup.enter()
+                let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                    do {
+                        if error != nil {return}
+                        let jsonObject = try JSONSerialization.jsonObject(with: data!)
+                        if let _ = jsonObject as? [String: Any] {
+                            var dataModel = WeatherDataModel()
+                            do {
+                                dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
+                                self.wdCityArr.append(dataModel)
+                                dispatchGroup.leave()
+                            } catch {
+                                print("city details not found")
+                                dispatchGroup.leave()
+                            }
+                        }
+                    } catch {
+                        print("JSONSerialization error:", error)
+                    }
+                })
+                task.resume()
+            })
+            self.operations.append(operation)
+            operationQueue.addOperation(operation)
+        }
 
         dispatchGroup.notify(queue: DispatchQueue.main, execute: {
-            print("all done......")
-            print(self.wdCityArr)
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
             self.prepareTableViewDataSource()
             self.tableView.reloadData()
         })
     }
 
     private func prepareTableViewDataSource() {
-        for dataModel in wdCityArr { // 6 cities
+        for dataModel in wdCityArr {
             var displayModel = WeatherDisplayModel()
             var min_temp: Double = Double(Int.max)
             var max_temp: Double = Double(Int.min)
             let currentTime = Date().currentTimeMillis()
-//            let currentTime = 1576399642 //Value for 2:10 pm
             guard let listArr = dataModel.list else {return}
             var isSlotFound = false
             for i in 0..<8 {
@@ -189,17 +105,7 @@ class CityListVC: UIViewController {
                 }
                 if max_temp < slotMaxTemp {
                     max_temp = slotMaxTemp
-                }//1576422000   //1576432800
-
-                let date = Date(timeIntervalSince1970: TimeInterval(slotStartTime))
-                let dateFormatter = DateFormatter()
-                dateFormatter.timeStyle = DateFormatter.Style.medium //Set time style
-                dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
-                dateFormatter.timeZone = .current
-                let localDate = dateFormatter.string(from: date)
-                print(localDate)
-                print(slotStartTime)
-                print()
+                }
 
                 if currentTime >= slotStartTime {
                     displayModel.temp = slotData.main?.temp ?? 0
@@ -208,7 +114,7 @@ class CityListVC: UIViewController {
                     let weather = slotData.weather?[0]
                     displayModel.weather = weather?.main ?? ""
                     isSlotFound = true
-                    break //1576476000, 1576399642,  1576400400
+                    break
                 }
             }
             displayModel.heading = dataModel.city?.name
@@ -248,6 +154,12 @@ extension CityListVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CityDetailsVC") as? CityDetailsVC {
+//            self.wdCityArr.forEach({
+//                if $0.city?.name == weatherDisplayModel[indexPath.row].heading {
+//                    vc.cityWeatherData = $0
+//                    return
+//                }
+//            })
             vc.cityWeatherData = self.wdCityArr[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
