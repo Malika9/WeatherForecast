@@ -179,8 +179,12 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="C0j-iN-cof" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="3iS-Gj-esF"/>
-                    <constraint firstAttribute="trailing" secondItem="C0j-iN-cof" secondAttribute="trailing" constant="40" id="8H3-uG-cq6"/>
+                    <constraint firstItem="C0j-iN-cof" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="3iS-Gj-esF">
+                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                    </constraint>
+                    <constraint firstAttribute="trailing" secondItem="C0j-iN-cof" secondAttribute="trailing" constant="40" id="8H3-uG-cq6">
+                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                    </constraint>
                     <constraint firstAttribute="bottom" secondItem="C0j-iN-cof" secondAttribute="bottom" constant="15" id="8ty-Gx-XFW"/>
                     <constraint firstItem="C0j-iN-cof" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="qp2-cA-wkE"/>
                 </constraints>
