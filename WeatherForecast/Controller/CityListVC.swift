@@ -53,7 +53,7 @@ class CityListVC: UIViewController {
         let operationQueue = OperationQueue()
         DataManager.weatherCityDataArr.removeAll()
         for city in self.cities {
-            print("going to hit API")
+            print("going to hit API for \(city)")
             let operation = BlockOperation(block: {
                 dispatchGroup.enter()
                 let cityUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=\(city),ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")
