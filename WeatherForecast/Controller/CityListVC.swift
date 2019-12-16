@@ -46,12 +46,13 @@ class CityListVC: UIViewController {
         let dispatchGroup = DispatchGroup()
         let session = URLSession.shared
         let operationQueue = OperationQueue()
+        dispatchGroup.enter()
         DataManager.wdCityArr.removeAll()
         for city in self.cities {
             let operation = BlockOperation(block: {
+                dispatchGroup.enter()
                 let cityUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=\(city),ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")
                 guard let url = cityUrl else {return}
-                dispatchGroup.enter()
                 let task = session.dataTask(with: url, completionHandler: { data, response, error in
                     do {
                         if error != nil {return}
@@ -76,6 +77,7 @@ class CityListVC: UIViewController {
             self.operations.append(operation)
             operationQueue.addOperation(operation)
         }
+        dispatchGroup.leave()
 
         dispatchGroup.notify(queue: DispatchQueue.main, execute: {
             print("yahi done")
