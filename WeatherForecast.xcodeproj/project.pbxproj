@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		207BE93423A7D84F009571DC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BE93323A7D84F009571DC /* DataManager.swift */; };
 		20FC389D23A4EE3D004CFF76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC389C23A4EE3D004CFF76 /* AppDelegate.swift */; };
 		20FC389F23A4EE3D004CFF76 /* CityListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FC389E23A4EE3D004CFF76 /* CityListVC.swift */; };
 		20FC38A223A4EE3D004CFF76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FC38A023A4EE3D004CFF76 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		207BE93323A7D84F009571DC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		20FC389923A4EE3D004CFF76 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FC389C23A4EE3D004CFF76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20FC389E23A4EE3D004CFF76 /* CityListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListVC.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		207BE93223A7D829009571DC /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				207BE93323A7D84F009571DC /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		20FC389023A4EE3D004CFF76 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 		20FC389B23A4EE3D004CFF76 /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				207BE93223A7D829009571DC /* DataManager */,
 				20FC38D023A6975E004CFF76 /* zs.png */,
 				20FC38CD23A65D43004CFF76 /* Controller */,
 				20FC38CA23A52533004CFF76 /* Utility */,
@@ -219,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20FC38D323A69A4C004CFF76 /* AddCityVC.swift in Sources */,
+				207BE93423A7D84F009571DC /* DataManager.swift in Sources */,
 				20FC38C023A4FBD4004CFF76 /* Main.swift in Sources */,
 				20FC38BF23A4FBD4004CFF76 /* Weather.swift in Sources */,
 				20FC389F23A4EE3D004CFF76 /* CityListVC.swift in Sources */,

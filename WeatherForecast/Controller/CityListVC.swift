@@ -9,9 +9,7 @@
 import UIKit
 
 class CityListVC: UIViewController {
-    private var wdCityArr = [WeatherDataModel]() //Prepared from json received
-    private var weatherDisplayModel = [WeatherDisplayModel]() //Same count as of wdCityArr
-    private var cities = Utils.cities
+    private var cities = DataManager.cities
     private var operations = [BlockOperation]()
     private let activityIndicator = UIActivityIndicatorView()
 
@@ -25,21 +23,17 @@ class CityListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        activityIndicator.frame = self.view.frame
-        activityIndicator.style = .gray
-        self.view.addSubview(activityIndicator)
-        self.view.bringSubviewToFront(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        activityIndicator.style = .gray
         self.prepareDataModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if cities.count != Utils.cities.count {
-            self.prepareDataModel()
-        } else {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,11 +42,11 @@ class CityListVC: UIViewController {
     }
 
     private func prepareDataModel() {
-        self.cities = Utils.cities
+        self.cities = DataManager.cities
         let dispatchGroup = DispatchGroup()
         let session = URLSession.shared
         let operationQueue = OperationQueue()
-        self.wdCityArr.removeAll()
+        DataManager.wdCityArr.removeAll()
         for city in self.cities {
             let operation = BlockOperation(block: {
                 let cityUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=\(city),ind&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")
@@ -66,7 +60,7 @@ class CityListVC: UIViewController {
                             var dataModel = WeatherDataModel()
                             do {
                                 dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                                self.wdCityArr.append(dataModel)
+                                DataManager.wdCityArr.append(dataModel)
                                 dispatchGroup.leave()
                             } catch {
                                 print("city details not found")
@@ -84,6 +78,7 @@ class CityListVC: UIViewController {
         }
 
         dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+            print("yahi done")
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
             self.prepareTableViewDataSource()
@@ -92,7 +87,7 @@ class CityListVC: UIViewController {
     }
 
     private func prepareTableViewDataSource() {
-        for dataModel in wdCityArr {
+        for dataModel in DataManager.wdCityArr {
             var displayModel = WeatherDisplayModel()
             var min_temp: Double = Double(Int.max)
             var max_temp: Double = Double(Int.min)
@@ -129,26 +124,26 @@ class CityListVC: UIViewController {
                 let weather = listArr[7].weather?[0]
                 displayModel.weather = weather?.main ?? ""
             }
-            weatherDisplayModel.append(displayModel)
+            DataManager.weatherDisplayModel.append(displayModel)
         }
     }
 }
 
 extension CityListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.wdCityArr.count
+        return DataManager.weatherDisplayModel.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CardCell") as? CardCell {
             cell.selectionStyle = .none
-            cell.lblCityName.text = self.weatherDisplayModel[indexPath.row].heading?.uppercased()
-            cell.lblTemp.text = "\(self.weatherDisplayModel[indexPath.row].temp ?? 0)"
-            cell.lblMinTemp.text = "\(self.weatherDisplayModel[indexPath.row].min_temp ?? 0)"
-            cell.lblMaxTemp.text = "\(self.weatherDisplayModel[indexPath.row].max_temp ?? 0)"
-            cell.lblHumidity.text = "\(self.weatherDisplayModel[indexPath.row].humidity ?? 0)"
-            cell.lblWeatherType.text = self.weatherDisplayModel[indexPath.row].weather
-            cell.lblWindSpeed.text = "\(self.weatherDisplayModel[indexPath.row].speed ?? 0)"
+            cell.lblCityName.text = DataManager.weatherDisplayModel[indexPath.row].heading?.uppercased()
+            cell.lblTemp.text = "\(DataManager.weatherDisplayModel[indexPath.row].temp ?? 0)"
+            cell.lblMinTemp.text = "\(DataManager.weatherDisplayModel[indexPath.row].min_temp ?? 0)"
+            cell.lblMaxTemp.text = "\(DataManager.weatherDisplayModel[indexPath.row].max_temp ?? 0)"
+            cell.lblHumidity.text = "\(DataManager.weatherDisplayModel[indexPath.row].humidity ?? 0)"
+            cell.lblWeatherType.text = DataManager.weatherDisplayModel[indexPath.row].weather
+            cell.lblWindSpeed.text = "\(DataManager.weatherDisplayModel[indexPath.row].speed ?? 0)"
             return cell
         }
         return UITableViewCell()
@@ -162,7 +157,7 @@ extension CityListVC: UITableViewDelegate, UITableViewDataSource {
 //                    return
 //                }
 //            })
-            vc.cityWeatherData = self.wdCityArr[indexPath.row]
+            vc.cityWeatherData = DataManager.wdCityArr[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
