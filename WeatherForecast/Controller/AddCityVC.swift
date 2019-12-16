@@ -49,7 +49,7 @@ extension AddCityVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = self.cities[indexPath.row]
+        cell.textLabel?.text = self.cities[indexPath.row].uppercased()
         cell.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9450980392, blue: 0.9725490196, alpha: 1)
         return cell
     }
