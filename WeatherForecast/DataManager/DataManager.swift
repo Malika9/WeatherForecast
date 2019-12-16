@@ -10,6 +10,6 @@ import Foundation
 
 class DataManager {
     static var cities = ["amritsar", "delhi", "pune", "ambala", "goa", "noida", "agra"]
-    static var wdCityArr = [WeatherDataModel]()
-    static var weatherDisplayModel = [WeatherDisplayModel]()
+    static var weatherCityDataArr = [WeatherDataModel]()
+    static var weatherDisplayArr = [WeatherDisplayModel]()
 }

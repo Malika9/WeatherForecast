@@ -14,17 +14,17 @@ class AddCityVC: UIViewController {
     private var locationManager = CLLocationManager()
     private var currentLoc: CLLocation?
     private var currentCityDataModel = WeatherDataModel()
-    let session = URLSession.shared
+    private let session = URLSession.shared
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
-    @IBAction func btnAddCurrentLocationTapped(_ sender: UIButton) {
+    @IBAction private func btnAddCurrentLocationTapped(_ sender: UIButton) {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == .authorizedAlways) {
             currentLoc = locationManager.location
             guard let lat = currentLoc?.coordinate.latitude, let long = currentLoc?.coordinate.longitude else {self.showAlert(message: "Sorry! Couldn't get your location"); return}
-            self.hitAPIFor(lat: lat, long: long)
+            self.getCityDataForLatLong(lat: lat, long: long)
         }
     }
 
@@ -54,8 +54,7 @@ extension AddCityVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    private func hitAPIFor(lat: Double, long: Double) {
-
+    private func getCityDataForLatLong(lat: Double, long: Double) {
         let latLongUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&APPID=e5b58e04d5d0ad76fde7b45a14fa0f79")
         guard let url = latLongUrl else {return}
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
@@ -98,7 +97,7 @@ extension AddCityVC: UITableViewDelegate, UITableViewDataSource {
                     var dataModel = WeatherDataModel()
                     do {
                         dataModel = try JSONDecoder().decode(WeatherDataModel.self, from: data!)
-                        DataManager.wdCityArr.append(dataModel)
+                        DataManager.weatherCityDataArr.append(dataModel)
                         self.prepareDisplayModelForCurrentCityData(dataModel: dataModel)
                     } catch {
                         print("city details not found")
@@ -112,42 +111,6 @@ extension AddCityVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     private func prepareDisplayModelForCurrentCityData(dataModel: WeatherDataModel) {
-        var displayModel = WeatherDisplayModel()
-        var min_temp: Double = Double(Int.max)
-        var max_temp: Double = Double(Int.min)
-        let currentTime = Date().currentTimeMillis()
-        guard let listArr = dataModel.list else {return}
-        var isSlotFound = false
-        for i in 0..<8 {
-            let slotData = listArr[i]
-            guard let slotMinTemp = slotData.main?.temp_min, let slotMaxTemp = slotData.main?.temp_max, let slotStartTime = slotData.dt else {return}
-            if min_temp > slotMinTemp{
-                min_temp = slotMinTemp
-            }
-            if max_temp < slotMaxTemp {
-                max_temp = slotMaxTemp
-            }
-
-            if currentTime >= slotStartTime {
-                displayModel.temp = slotData.main?.temp ?? 0
-                displayModel.humidity = slotData.main?.humidity ?? 0
-                displayModel.speed = slotData.wind?.speed ?? 0
-                let weather = slotData.weather?[0]
-                displayModel.weather = weather?.main ?? ""
-                isSlotFound = true
-                break
-            }
-        }
-        displayModel.heading = dataModel.city?.name
-        displayModel.min_temp = min_temp
-        displayModel.max_temp = max_temp
-        if !isSlotFound {
-            displayModel.temp = listArr[7].main?.temp ?? 0
-            displayModel.humidity = listArr[7].main?.humidity ?? 0
-            displayModel.speed = listArr[7].wind?.speed ?? 0
-            let weather = listArr[7].weather?[0]
-            displayModel.weather = weather?.main ?? ""
-        }
-        DataManager.weatherDisplayModel.append(displayModel)
+        Utils.prepareDisplayModel(dataModel: dataModel)
     }
 }
